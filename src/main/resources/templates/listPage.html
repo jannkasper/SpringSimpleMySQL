@@ -1,0 +1,63 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Contacts List</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+
+    <!--<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>-->
+
+    <!--&lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"-->
+    <!--integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"-->
+    <!--crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>-->
+    <link href="/style.css" rel="stylesheet">
+</head>
+
+<!--/*@thymesVar id="accounts" type="java.util.List"*/-->
+<!--/*@thymesVar id="userAccount" type="com.users.entities.UserAccount"*/-->
+<body>
+<div class="container">
+    <div class="row">
+        <div class = "col-sm-6">
+            <img src="/phone.png" class="phone">
+        </div>
+        <div class= "col-sm-6">
+            <div class = "right-column text-center">
+                <img src="/instagram.png" class="instagram-logo">
+                <p class="info">Check all our users</p>
+                <div class="table-responsive" th:if="${not #lists.isEmpty(accounts)}">
+                    <table class="table table-hover ">
+
+                        <tr class="terms">
+                            <th>Login</th>
+                            <th>Email</th>
+                        </tr>
+                        <tr class="terms" th:remove="all">
+                            <td>name</td>
+                            <td>email</td>
+                        </tr>
+                        <!--/*@thymesVar id="userAccount" type="com.users.entities.UserAccount"*/-->
+                        <tr class="terms" th:each="userAccount : ${accounts}">
+                            <td th:text="${userAccount.login}">Login</td>
+                            <td th:text="${userAccount.email}">Email</td>
+                        </tr>
+                    </table>
+                </div>
+                <p class="or">OR</p>
+                <p class="info">Log In or Create your account</p>
+                <a class="btn btn-primary btn-block" href="/" role="button">Your Account</a>
+            </div>
+            <div class="right-column-login text-center">
+                <p>Check your contacts list <a href="/">Contacts</a> </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

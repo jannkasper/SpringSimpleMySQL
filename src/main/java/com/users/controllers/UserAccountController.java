@@ -20,8 +20,8 @@ public class UserAccountController {
 
     @GetMapping("/")
     public String showMain (Map<String,Object> model){
-        UserAccount userAccount = new UserAccount();
-        model.put("userAccount", userAccount);
+        model.put("userAccountLogin", new UserAccount());
+        model.put("userAccountRegister", new UserAccount());
         return "formPage";
     }
     @PostMapping("/delete")
@@ -40,11 +40,11 @@ public class UserAccountController {
         return "accountPage";
     }
 
-
     @PostMapping("/register")
     public String register (@Valid UserAccount userAccount, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("userAccount", userAccount);
+            model.addAttribute("userAccountLogin", new UserAccount());
+            model.addAttribute("userAccountRegister", userAccount);
             return "formPage";
         } else {
             this.userAccountService.save(userAccount);
@@ -62,12 +62,18 @@ public class UserAccountController {
                 model.addAttribute(userAccountService.findUserAccountByLogin(userAccount.getLogin()));
                 return "accountPage";
             } else {
-                model.addAttribute("userAccount", userAccount);
+                model.addAttribute("userAccountLogin", userAccount);
+                model.addAttribute("userAccountRegister", new UserAccount());
                 return "formPage";
             }
         }
-        model.addAttribute("userAccount", new UserAccount());
-        return "formPage";
+        return "redirect:/";
+    }
+
+    @GetMapping("/user_list")
+    public String showList(Model model){
+        model.addAttribute("accounts", userAccountService.findAll());
+        return "listPage";
     }
 
 
