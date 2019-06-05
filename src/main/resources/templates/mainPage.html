@@ -1,0 +1,71 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Contacts List</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+
+    <!--<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>-->
+
+    <!--&lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"-->
+    <!--integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"-->
+    <!--crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>-->
+    <link href="/style.css" rel="stylesheet">
+</head>
+
+<!--/*@thymesVar id="people" type="java.util.List"*/-->
+<!--/*@thymesVar id="person" type="com.crud.simpleCrud.entities.PersonEntity"*/-->
+<body>
+<div class="container">
+    <div class="row">
+        <div class = "col-sm-6">
+            <img src="/phone.png" class="phone">
+        </div>
+        <div class= "col-sm-6">
+            <div class = "right-column text-center" style="width: 550px;">
+                <p class="info">Create new person into your personalized group of contacts</p>
+                <a class="btn btn-primary btn-block" href="/create" role="button">Create Character</a>
+                <p class="or">OR</p>
+                <div class="table-responsive" th:if="${not #lists.isEmpty(people)}">
+                <table class="table table-hover ">
+
+                    <tr class="terms">
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr class="terms" th:remove="all">
+                        <td>1</td>
+                        <td>email</td>
+                        <td>name</td>
+                        <td>age</td>
+                        <td>update</td>
+                        <td>delete</td>
+                    </tr>
+                    <!--/*@thymesVar id="person" type="com.crud.simpleCrud.entities.PersonEntity"*/-->
+                    <tr class="terms" th:each="person : ${people}">
+                        <td th:text="${person.id}">Id</td>
+                        <td th:text="${person.email}">Name</td>
+                        <td th:text="${person.name}">Surname</td>
+                        <td th:text="${person.age}">Surname</td>
+                        <td><a href="#" th:href="@{'/edit/' + ${person.id}}">Edit</a></td>
+                        <td><a href="#" th:href="@{'/delete/' + ${person.id} }">Delete</a></td>
+                    </tr>
+                </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

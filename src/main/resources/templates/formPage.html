@@ -1,0 +1,67 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Person Form</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+
+    <!--<script src="/webjars/jquery/1.11.1/jquery.min.js"></script>-->
+
+    <!--&lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"-->
+    <!--integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"-->
+    <!--crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>-->
+    <link href="/style.css" rel="stylesheet">
+</head>
+
+<body>
+<!--/*@thymesVar id="userAccount" type="com.users.entities.UserAccount"*/-->
+<div class="container">
+    <div class="row">
+        <div class = "col-sm-6">
+            <img src="/phone.png" class="phone">
+        </div>
+        <div class= "col-sm-6">
+            <div class = "right-column text-center">
+                <img src="/instagram.png" class="instagram-logo">
+                <form th:object="${userAccount}" action="#" th:action="@{/logIn}" method="post">
+                    <input type="hidden" th:field="*{id}"/>
+                    <input type="hidden" th:field="*{email}"/>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Login" th:field="*{login}">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" th:field="*{password}">
+                    </div>
+                    <button type="submit" value="Create" class="btn btn-primary btn-block">Log In</button>
+                </form>
+                <p class="or">OR</p>
+                <p class="info">Create New Account</p>
+                <form th:object="${userAccount}" action="#" th:action="@{/register}" method="post">
+                    <input type="hidden" th:field="*{id}"/>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Login" th:field="*{login}">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" th:field="*{password}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email" th:field="*{email}">
+                    </div>
+                    <button type="submit" value="Create" class="btn btn-primary btn-block">Register</button>
+                </form>
+                <p class="terms">By signing up, you agree to our <b>Terms. </b>Learn how we collect, use and share your data in our <b>Data Policy</b>.</p>
+            </div>
+            <div class="right-column-login text-center">
+                <p>Check your contacts list <a href="/">Contacts</a> </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

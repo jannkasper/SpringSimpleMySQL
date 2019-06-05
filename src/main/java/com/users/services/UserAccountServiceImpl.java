@@ -35,4 +35,9 @@ public class UserAccountServiceImpl implements UserAccountService {
     public void deleteById(Long aLong) {
         userAccountRepository.deleteById(aLong);
     }
+
+    @Override
+    public UserAccount findUserAccountByLogin(String login) {
+        return userAccountRepository.findUserAccountByLogin(login);
+    }
 }
